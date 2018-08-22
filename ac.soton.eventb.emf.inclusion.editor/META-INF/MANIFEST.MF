@@ -15,6 +15,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
- org.eventb.emf.core.edit;visibility:=reexport
+ org.eventb.emf.core.edit;visibility:=reexport,
+ ac.soton.eventb.emf.core.extension.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: ac.soton.eventb.emf.inclusion.editor

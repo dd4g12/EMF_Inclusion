@@ -20,6 +20,7 @@ import org.eventb.emf.core.machine.Event;
  * <ul>
  *   <li>{@link ac.soton.eventb.emf.inclusion.EventSynchronisation#getSynchronisedEvent <em>Synchronised Event</em>}</li>
  *   <li>{@link ac.soton.eventb.emf.inclusion.EventSynchronisation#getPrefix <em>Prefix</em>}</li>
+ *   <li>{@link ac.soton.eventb.emf.inclusion.EventSynchronisation#getSynchronisedCases <em>Synchronised Cases</em>}</li>
  * </ul>
  * </p>
  *
@@ -80,5 +81,31 @@ public interface EventSynchronisation extends AbstractExtension {
 	 * @generated
 	 */
 	void setPrefix(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Synchronised Cases</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Synchronised Cases</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Synchronised Cases</em>' reference.
+	 * @see #setSynchronisedCases(ac.soton.eventb.emf.core.extension.coreextension.EventCases)
+	 * @see ac.soton.eventb.emf.inclusion.InclusionPackage#getEventSynchronisation_SynchronisedCases()
+	 * @model
+	 * @generated
+	 */
+	ac.soton.eventb.emf.core.extension.coreextension.EventCases getSynchronisedCases();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.eventb.emf.inclusion.EventSynchronisation#getSynchronisedCases <em>Synchronised Cases</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Synchronised Cases</em>' reference.
+	 * @see #getSynchronisedCases()
+	 * @generated
+	 */
+	void setSynchronisedCases(ac.soton.eventb.emf.core.extension.coreextension.EventCases value);
 
 } // EventSynchronisation

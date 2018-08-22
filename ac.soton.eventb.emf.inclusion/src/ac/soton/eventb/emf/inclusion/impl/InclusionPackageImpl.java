@@ -10,7 +10,6 @@ import ac.soton.eventb.emf.inclusion.EventSynchronisation;
 import ac.soton.eventb.emf.inclusion.InclusionFactory;
 import ac.soton.eventb.emf.inclusion.InclusionPackage;
 import ac.soton.eventb.emf.inclusion.MachineInclusion;
-
 import org.eclipse.emf.common.util.URI;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -18,6 +17,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eventb.emf.core.CorePackage;
@@ -92,7 +92,9 @@ public class InclusionPackageImpl extends EPackageImpl implements InclusionPacka
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 		CorePackage.eINSTANCE.eClass();
+		ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theInclusionPackage.createPackageContents();
@@ -177,6 +179,15 @@ public class InclusionPackageImpl extends EPackageImpl implements InclusionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getEventSynchronisation_SynchronisedCases() {
+		return (EReference)eventSynchronisationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public InclusionFactory getInclusionFactory() {
 		return (InclusionFactory)getEFactoryInstance();
 	}
@@ -208,6 +219,7 @@ public class InclusionPackageImpl extends EPackageImpl implements InclusionPacka
 		eventSynchronisationEClass = createEClass(EVENT_SYNCHRONISATION);
 		createEReference(eventSynchronisationEClass, EVENT_SYNCHRONISATION__SYNCHRONISED_EVENT);
 		createEAttribute(eventSynchronisationEClass, EVENT_SYNCHRONISATION__PREFIX);
+		createEReference(eventSynchronisationEClass, EVENT_SYNCHRONISATION__SYNCHRONISED_CASES);
 	}
 
 	/**
@@ -236,6 +248,7 @@ public class InclusionPackageImpl extends EPackageImpl implements InclusionPacka
 		// Obtain other dependent packages
 		CorePackage theCorePackage = (CorePackage)EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI);
 		MachinePackage theMachinePackage = (MachinePackage)EPackage.Registry.INSTANCE.getEPackage(MachinePackage.eNS_URI);
+		ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage theCoreextensionPackage = (ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage)EPackage.Registry.INSTANCE.getEPackage(ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -254,6 +267,7 @@ public class InclusionPackageImpl extends EPackageImpl implements InclusionPacka
 		initEClass(eventSynchronisationEClass, EventSynchronisation.class, "EventSynchronisation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEventSynchronisation_SynchronisedEvent(), theMachinePackage.getEvent(), null, "synchronisedEvent", null, 0, 1, EventSynchronisation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEventSynchronisation_Prefix(), ecorePackage.getEString(), "prefix", "", 0, 1, EventSynchronisation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEventSynchronisation_SynchronisedCases(), theCoreextensionPackage.getEventCases(), null, "synchronisedCases", null, 0, 1, EventSynchronisation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

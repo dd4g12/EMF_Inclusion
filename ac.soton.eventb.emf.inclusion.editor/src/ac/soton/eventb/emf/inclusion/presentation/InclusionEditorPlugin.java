@@ -6,6 +6,7 @@
  */
 package ac.soton.eventb.emf.inclusion.presentation;
 
+import ac.soton.eventb.emf.core.extension.coreextension.provider.EventbcoreextensionEditPlugin;
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
@@ -50,6 +51,7 @@ public final class InclusionEditorPlugin extends EMFPlugin {
 			(new ResourceLocator [] {
 				EcoreEditPlugin.INSTANCE,
 				EventbcoreEditPlugin.INSTANCE,
+				EventbcoreextensionEditPlugin.INSTANCE,
 			});
 	}
 

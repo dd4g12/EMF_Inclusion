@@ -288,13 +288,23 @@ public interface InclusionPackage extends EPackage {
 	int EVENT_SYNCHRONISATION__PREFIX = CorePackage.ABSTRACT_EXTENSION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Synchronised Cases</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_SYNCHRONISATION__SYNCHRONISED_CASES = CorePackage.ABSTRACT_EXTENSION_FEATURE_COUNT + 2;
+
+
+	/**
 	 * The number of structural features of the '<em>Event Synchronisation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_SYNCHRONISATION_FEATURE_COUNT = CorePackage.ABSTRACT_EXTENSION_FEATURE_COUNT + 2;
+	int EVENT_SYNCHRONISATION_FEATURE_COUNT = CorePackage.ABSTRACT_EXTENSION_FEATURE_COUNT + 3;
 
 
 	/**
@@ -371,6 +381,17 @@ public interface InclusionPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getEventSynchronisation_Prefix();
+
+	/**
+	 * Returns the meta object for the reference '{@link ac.soton.eventb.emf.inclusion.EventSynchronisation#getSynchronisedCases <em>Synchronised Cases</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Synchronised Cases</em>'.
+	 * @see ac.soton.eventb.emf.inclusion.EventSynchronisation#getSynchronisedCases()
+	 * @see #getEventSynchronisation()
+	 * @generated
+	 */
+	EReference getEventSynchronisation_SynchronisedCases();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -453,6 +474,14 @@ public interface InclusionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EVENT_SYNCHRONISATION__PREFIX = eINSTANCE.getEventSynchronisation_Prefix();
+
+		/**
+		 * The meta object literal for the '<em><b>Synchronised Cases</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EVENT_SYNCHRONISATION__SYNCHRONISED_CASES = eINSTANCE.getEventSynchronisation_SynchronisedCases();
 
 	}
 

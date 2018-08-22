@@ -10,13 +10,13 @@ package ac.soton.eventb.emf.inclusion.provider;
 import ac.soton.eventb.emf.inclusion.EventSynchronisation;
 import ac.soton.eventb.emf.inclusion.InclusionFactory;
 import ac.soton.eventb.emf.inclusion.InclusionPackage;
-
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -68,6 +68,7 @@ public class EventSynchronisationItemProvider
 
 			addSynchronisedEventPropertyDescriptor(object);
 			addPrefixPropertyDescriptor(object);
+			addSynchronisedCasesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -112,6 +113,28 @@ public class EventSynchronisationItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Synchronised Cases feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSynchronisedCasesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EventSynchronisation_synchronisedCases_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventSynchronisation_synchronisedCases_feature", "_UI_EventSynchronisation_type"),
+				 InclusionPackage.Literals.EVENT_SYNCHRONISATION__SYNCHRONISED_CASES,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -170,16 +193,36 @@ public class EventSynchronisationItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CorePackage.Literals.EVENT_BELEMENT__EXTENSIONS,
-				 InclusionFactory.eINSTANCE.createMachineInclusion()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CorePackage.Literals.EVENT_BELEMENT__EXTENSIONS,
-				 InclusionFactory.eINSTANCE.createEventSynchronisation()));
+		
+			
+		if (object instanceof EObject && 
+			InclusionPackage.Literals.MACHINE_INCLUSION.getEAnnotation("org.eventb.emf.core.extendedMetaClasses") == null  || 
+			InclusionPackage.Literals.MACHINE_INCLUSION.getEAnnotation("org.eventb.emf.core.extendedMetaClasses").getReferences().contains(((EObject)object).eClass()))
+		
+			newChildDescriptors.add
+				(createChildParameter
+					(CorePackage.Literals.EVENT_BELEMENT__EXTENSIONS,
+				 	InclusionFactory.eINSTANCE.createMachineInclusion()));
+		
+			
+		if (object instanceof EObject && 
+			InclusionPackage.Literals.EVENT_SYNCHRONISATION.getEAnnotation("org.eventb.emf.core.extendedMetaClasses") == null  || 
+			InclusionPackage.Literals.EVENT_SYNCHRONISATION.getEAnnotation("org.eventb.emf.core.extendedMetaClasses").getReferences().contains(((EObject)object).eClass()))
+		
+			newChildDescriptors.add
+				(createChildParameter
+					(CorePackage.Literals.EVENT_BELEMENT__EXTENSIONS,
+				 	InclusionFactory.eINSTANCE.createEventSynchronisation()));
+		
+			
+		if (object instanceof EObject && 
+			ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage.Literals.EVENT_CASES.getEAnnotation("org.eventb.emf.core.extendedMetaClasses") == null  || 
+			ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage.Literals.EVENT_CASES.getEAnnotation("org.eventb.emf.core.extendedMetaClasses").getReferences().contains(((EObject)object).eClass()))
+		
+			newChildDescriptors.add
+				(createChildParameter
+					(CorePackage.Literals.EVENT_BELEMENT__EXTENSIONS,
+				 	ac.soton.eventb.emf.core.extension.coreextension.CoreextensionFactory.eINSTANCE.createEventCases()));
 	}
 
 }

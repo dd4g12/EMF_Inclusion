@@ -6,6 +6,7 @@
  */
 package ac.soton.eventb.emf.inclusion.provider;
 
+import ac.soton.eventb.emf.core.extension.coreextension.provider.EventbcoreextensionEditPlugin;
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -48,6 +49,7 @@ public final class InclusionEditPlugin extends EMFPlugin {
 		  (new ResourceLocator [] {
 		     EcoreEditPlugin.INSTANCE,
 		     EventbcoreEditPlugin.INSTANCE,
+		     EventbcoreextensionEditPlugin.INSTANCE,
 		   });
 	}
 
