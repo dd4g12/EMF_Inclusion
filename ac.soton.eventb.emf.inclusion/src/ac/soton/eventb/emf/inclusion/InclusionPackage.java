@@ -298,13 +298,23 @@ public interface InclusionPackage extends EPackage {
 
 
 	/**
+	 * The feature id for the '<em><b>Actual Parameters</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_SYNCHRONISATION__ACTUAL_PARAMETERS = CorePackage.ABSTRACT_EXTENSION_FEATURE_COUNT + 3;
+
+
+	/**
 	 * The number of structural features of the '<em>Event Synchronisation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_SYNCHRONISATION_FEATURE_COUNT = CorePackage.ABSTRACT_EXTENSION_FEATURE_COUNT + 3;
+	int EVENT_SYNCHRONISATION_FEATURE_COUNT = CorePackage.ABSTRACT_EXTENSION_FEATURE_COUNT + 4;
 
 
 	/**
@@ -392,6 +402,17 @@ public interface InclusionPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getEventSynchronisation_SynchronisedCases();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link ac.soton.eventb.emf.inclusion.EventSynchronisation#getActualParameters <em>Actual Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Actual Parameters</em>'.
+	 * @see ac.soton.eventb.emf.inclusion.EventSynchronisation#getActualParameters()
+	 * @see #getEventSynchronisation()
+	 * @generated
+	 */
+	EAttribute getEventSynchronisation_ActualParameters();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -482,6 +503,14 @@ public interface InclusionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EVENT_SYNCHRONISATION__SYNCHRONISED_CASES = eINSTANCE.getEventSynchronisation_SynchronisedCases();
+
+		/**
+		 * The meta object literal for the '<em><b>Actual Parameters</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVENT_SYNCHRONISATION__ACTUAL_PARAMETERS = eINSTANCE.getEventSynchronisation_ActualParameters();
 
 	}
 

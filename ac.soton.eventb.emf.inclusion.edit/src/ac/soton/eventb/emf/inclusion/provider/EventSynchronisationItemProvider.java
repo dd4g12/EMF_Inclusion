@@ -7,6 +7,8 @@
 package ac.soton.eventb.emf.inclusion.provider;
 
 
+import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionFactory;
+import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
 import ac.soton.eventb.emf.inclusion.EventSynchronisation;
 import ac.soton.eventb.emf.inclusion.InclusionFactory;
 import ac.soton.eventb.emf.inclusion.InclusionPackage;
@@ -69,6 +71,7 @@ public class EventSynchronisationItemProvider
 			addSynchronisedEventPropertyDescriptor(object);
 			addPrefixPropertyDescriptor(object);
 			addSynchronisedCasesPropertyDescriptor(object);
+			addActualParametersPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -140,6 +143,28 @@ public class EventSynchronisationItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Actual Parameters feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addActualParametersPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EventSynchronisation_actualParameters_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventSynchronisation_actualParameters_feature", "_UI_EventSynchronisation_type"),
+				 InclusionPackage.Literals.EVENT_SYNCHRONISATION__ACTUAL_PARAMETERS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns EventSynchronisation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -177,6 +202,7 @@ public class EventSynchronisationItemProvider
 
 		switch (notification.getFeatureID(EventSynchronisation.class)) {
 			case InclusionPackage.EVENT_SYNCHRONISATION__PREFIX:
+			case InclusionPackage.EVENT_SYNCHRONISATION__ACTUAL_PARAMETERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -216,13 +242,13 @@ public class EventSynchronisationItemProvider
 		
 			
 		if (object instanceof EObject && 
-			ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage.Literals.EVENT_CASES.getEAnnotation("org.eventb.emf.core.extendedMetaClasses") == null  || 
-			ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage.Literals.EVENT_CASES.getEAnnotation("org.eventb.emf.core.extendedMetaClasses").getReferences().contains(((EObject)object).eClass()))
+			CoreextensionPackage.Literals.EVENT_CASES.getEAnnotation("org.eventb.emf.core.extendedMetaClasses") == null  || 
+			CoreextensionPackage.Literals.EVENT_CASES.getEAnnotation("org.eventb.emf.core.extendedMetaClasses").getReferences().contains(((EObject)object).eClass()))
 		
 			newChildDescriptors.add
 				(createChildParameter
 					(CorePackage.Literals.EVENT_BELEMENT__EXTENSIONS,
-				 	ac.soton.eventb.emf.core.extension.coreextension.CoreextensionFactory.eINSTANCE.createEventCases()));
+				 	CoreextensionFactory.eINSTANCE.createEventCases()));
 	}
 
 }

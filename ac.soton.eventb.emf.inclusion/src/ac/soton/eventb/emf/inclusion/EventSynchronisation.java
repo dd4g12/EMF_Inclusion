@@ -6,6 +6,8 @@
  */
 package ac.soton.eventb.emf.inclusion;
 
+import ac.soton.eventb.emf.core.extension.coreextension.EventCases;
+import org.eclipse.emf.common.util.EList;
 import org.eventb.emf.core.AbstractExtension;
 
 import org.eventb.emf.core.machine.Event;
@@ -21,6 +23,7 @@ import org.eventb.emf.core.machine.Event;
  *   <li>{@link ac.soton.eventb.emf.inclusion.EventSynchronisation#getSynchronisedEvent <em>Synchronised Event</em>}</li>
  *   <li>{@link ac.soton.eventb.emf.inclusion.EventSynchronisation#getPrefix <em>Prefix</em>}</li>
  *   <li>{@link ac.soton.eventb.emf.inclusion.EventSynchronisation#getSynchronisedCases <em>Synchronised Cases</em>}</li>
+ *   <li>{@link ac.soton.eventb.emf.inclusion.EventSynchronisation#getActualParameters <em>Actual Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -91,12 +94,12 @@ public interface EventSynchronisation extends AbstractExtension {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Synchronised Cases</em>' reference.
-	 * @see #setSynchronisedCases(ac.soton.eventb.emf.core.extension.coreextension.EventCases)
+	 * @see #setSynchronisedCases(EventCases)
 	 * @see ac.soton.eventb.emf.inclusion.InclusionPackage#getEventSynchronisation_SynchronisedCases()
 	 * @model
 	 * @generated
 	 */
-	ac.soton.eventb.emf.core.extension.coreextension.EventCases getSynchronisedCases();
+	EventCases getSynchronisedCases();
 
 	/**
 	 * Sets the value of the '{@link ac.soton.eventb.emf.inclusion.EventSynchronisation#getSynchronisedCases <em>Synchronised Cases</em>}' reference.
@@ -106,6 +109,22 @@ public interface EventSynchronisation extends AbstractExtension {
 	 * @see #getSynchronisedCases()
 	 * @generated
 	 */
-	void setSynchronisedCases(ac.soton.eventb.emf.core.extension.coreextension.EventCases value);
+	void setSynchronisedCases(EventCases value);
+
+	/**
+	 * Returns the value of the '<em><b>Actual Parameters</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Actual Parameters</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Actual Parameters</em>' attribute list.
+	 * @see ac.soton.eventb.emf.inclusion.InclusionPackage#getEventSynchronisation_ActualParameters()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getActualParameters();
 
 } // EventSynchronisation

@@ -6,14 +6,18 @@
  */
 package ac.soton.eventb.emf.inclusion.impl;
 
+import ac.soton.eventb.emf.core.extension.coreextension.EventCases;
 import ac.soton.eventb.emf.inclusion.EventSynchronisation;
 import ac.soton.eventb.emf.inclusion.InclusionPackage;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eventb.emf.core.impl.AbstractExtensionImpl;
 
@@ -29,6 +33,7 @@ import org.eventb.emf.core.machine.Event;
  *   <li>{@link ac.soton.eventb.emf.inclusion.impl.EventSynchronisationImpl#getSynchronisedEvent <em>Synchronised Event</em>}</li>
  *   <li>{@link ac.soton.eventb.emf.inclusion.impl.EventSynchronisationImpl#getPrefix <em>Prefix</em>}</li>
  *   <li>{@link ac.soton.eventb.emf.inclusion.impl.EventSynchronisationImpl#getSynchronisedCases <em>Synchronised Cases</em>}</li>
+ *   <li>{@link ac.soton.eventb.emf.inclusion.impl.EventSynchronisationImpl#getActualParameters <em>Actual Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,7 +78,17 @@ public class EventSynchronisationImpl extends AbstractExtensionImpl implements E
 	 * @generated
 	 * @ordered
 	 */
-	protected ac.soton.eventb.emf.core.extension.coreextension.EventCases synchronisedCases;
+	protected EventCases synchronisedCases;
+
+	/**
+	 * The cached value of the '{@link #getActualParameters() <em>Actual Parameters</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActualParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> actualParameters;
 
 	/**
 	 * The default value of the '{@link #getExtensionId() <em>Extension Id</em>}' attribute.
@@ -178,10 +193,10 @@ public class EventSynchronisationImpl extends AbstractExtensionImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ac.soton.eventb.emf.core.extension.coreextension.EventCases getSynchronisedCases() {
+	public EventCases getSynchronisedCases() {
 		if (synchronisedCases != null && synchronisedCases.eIsProxy()) {
 			InternalEObject oldSynchronisedCases = (InternalEObject)synchronisedCases;
-			synchronisedCases = (ac.soton.eventb.emf.core.extension.coreextension.EventCases)eResolveProxy(oldSynchronisedCases);
+			synchronisedCases = (EventCases)eResolveProxy(oldSynchronisedCases);
 			if (synchronisedCases != oldSynchronisedCases) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, InclusionPackage.EVENT_SYNCHRONISATION__SYNCHRONISED_CASES, oldSynchronisedCases, synchronisedCases));
@@ -195,7 +210,7 @@ public class EventSynchronisationImpl extends AbstractExtensionImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ac.soton.eventb.emf.core.extension.coreextension.EventCases basicGetSynchronisedCases() {
+	public EventCases basicGetSynchronisedCases() {
 		return synchronisedCases;
 	}
 
@@ -204,11 +219,23 @@ public class EventSynchronisationImpl extends AbstractExtensionImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSynchronisedCases(ac.soton.eventb.emf.core.extension.coreextension.EventCases newSynchronisedCases) {
-		ac.soton.eventb.emf.core.extension.coreextension.EventCases oldSynchronisedCases = synchronisedCases;
+	public void setSynchronisedCases(EventCases newSynchronisedCases) {
+		EventCases oldSynchronisedCases = synchronisedCases;
 		synchronisedCases = newSynchronisedCases;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, InclusionPackage.EVENT_SYNCHRONISATION__SYNCHRONISED_CASES, oldSynchronisedCases, synchronisedCases));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<String> getActualParameters() {
+		if (actualParameters == null) {
+			actualParameters = new EDataTypeUniqueEList<String>(String.class, this, InclusionPackage.EVENT_SYNCHRONISATION__ACTUAL_PARAMETERS);
+		}
+		return actualParameters;
 	}
 
 	/**
@@ -227,6 +254,8 @@ public class EventSynchronisationImpl extends AbstractExtensionImpl implements E
 			case InclusionPackage.EVENT_SYNCHRONISATION__SYNCHRONISED_CASES:
 				if (resolve) return getSynchronisedCases();
 				return basicGetSynchronisedCases();
+			case InclusionPackage.EVENT_SYNCHRONISATION__ACTUAL_PARAMETERS:
+				return getActualParameters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -236,6 +265,7 @@ public class EventSynchronisationImpl extends AbstractExtensionImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -246,7 +276,11 @@ public class EventSynchronisationImpl extends AbstractExtensionImpl implements E
 				setPrefix((String)newValue);
 				return;
 			case InclusionPackage.EVENT_SYNCHRONISATION__SYNCHRONISED_CASES:
-				setSynchronisedCases((ac.soton.eventb.emf.core.extension.coreextension.EventCases)newValue);
+				setSynchronisedCases((EventCases)newValue);
+				return;
+			case InclusionPackage.EVENT_SYNCHRONISATION__ACTUAL_PARAMETERS:
+				getActualParameters().clear();
+				getActualParameters().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -267,7 +301,10 @@ public class EventSynchronisationImpl extends AbstractExtensionImpl implements E
 				setPrefix(PREFIX_EDEFAULT);
 				return;
 			case InclusionPackage.EVENT_SYNCHRONISATION__SYNCHRONISED_CASES:
-				setSynchronisedCases((ac.soton.eventb.emf.core.extension.coreextension.EventCases)null);
+				setSynchronisedCases((EventCases)null);
+				return;
+			case InclusionPackage.EVENT_SYNCHRONISATION__ACTUAL_PARAMETERS:
+				getActualParameters().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -287,6 +324,8 @@ public class EventSynchronisationImpl extends AbstractExtensionImpl implements E
 				return PREFIX_EDEFAULT == null ? prefix != null : !PREFIX_EDEFAULT.equals(prefix);
 			case InclusionPackage.EVENT_SYNCHRONISATION__SYNCHRONISED_CASES:
 				return synchronisedCases != null;
+			case InclusionPackage.EVENT_SYNCHRONISATION__ACTUAL_PARAMETERS:
+				return actualParameters != null && !actualParameters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -303,6 +342,8 @@ public class EventSynchronisationImpl extends AbstractExtensionImpl implements E
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (prefix: ");
 		result.append(prefix);
+		result.append(", actualParameters: ");
+		result.append(actualParameters);
 		result.append(')');
 		return result.toString();
 	}

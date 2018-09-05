@@ -158,6 +158,7 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
 import ac.soton.eventb.emf.inclusion.provider.InclusionItemProviderAdapterFactory;
+import ac.soton.eventb.emf.core.extension.coreextension.provider.CoreextensionItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
@@ -706,7 +707,7 @@ public class InclusionEditor
 		adapterFactory.addAdapterFactory(new CoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new MachineItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ContextItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new ac.soton.eventb.emf.core.extension.coreextension.provider.CoreextensionItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new CoreextensionItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.

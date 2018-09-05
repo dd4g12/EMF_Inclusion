@@ -18,6 +18,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference inclusion.ecore#//EventSynchronisation/synchronisedEvent"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute inclusion.ecore#//EventSynchronisation/prefix"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference inclusion.ecore#//EventSynchronisation/synchronisedCases"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute inclusion.ecore#//EventSynchronisation/actualParameters"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

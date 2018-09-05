@@ -6,6 +6,7 @@
  */
 package ac.soton.eventb.emf.inclusion.impl;
 
+import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
 import ac.soton.eventb.emf.inclusion.EventSynchronisation;
 import ac.soton.eventb.emf.inclusion.InclusionFactory;
 import ac.soton.eventb.emf.inclusion.InclusionPackage;
@@ -94,7 +95,7 @@ public class InclusionPackageImpl extends EPackageImpl implements InclusionPacka
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
 		CorePackage.eINSTANCE.eClass();
-		ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage.eINSTANCE.eClass();
+		CoreextensionPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theInclusionPackage.createPackageContents();
@@ -188,6 +189,15 @@ public class InclusionPackageImpl extends EPackageImpl implements InclusionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getEventSynchronisation_ActualParameters() {
+		return (EAttribute)eventSynchronisationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public InclusionFactory getInclusionFactory() {
 		return (InclusionFactory)getEFactoryInstance();
 	}
@@ -220,6 +230,7 @@ public class InclusionPackageImpl extends EPackageImpl implements InclusionPacka
 		createEReference(eventSynchronisationEClass, EVENT_SYNCHRONISATION__SYNCHRONISED_EVENT);
 		createEAttribute(eventSynchronisationEClass, EVENT_SYNCHRONISATION__PREFIX);
 		createEReference(eventSynchronisationEClass, EVENT_SYNCHRONISATION__SYNCHRONISED_CASES);
+		createEAttribute(eventSynchronisationEClass, EVENT_SYNCHRONISATION__ACTUAL_PARAMETERS);
 	}
 
 	/**
@@ -248,7 +259,7 @@ public class InclusionPackageImpl extends EPackageImpl implements InclusionPacka
 		// Obtain other dependent packages
 		CorePackage theCorePackage = (CorePackage)EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI);
 		MachinePackage theMachinePackage = (MachinePackage)EPackage.Registry.INSTANCE.getEPackage(MachinePackage.eNS_URI);
-		ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage theCoreextensionPackage = (ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage)EPackage.Registry.INSTANCE.getEPackage(ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage.eNS_URI);
+		CoreextensionPackage theCoreextensionPackage = (CoreextensionPackage)EPackage.Registry.INSTANCE.getEPackage(CoreextensionPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -268,6 +279,7 @@ public class InclusionPackageImpl extends EPackageImpl implements InclusionPacka
 		initEReference(getEventSynchronisation_SynchronisedEvent(), theMachinePackage.getEvent(), null, "synchronisedEvent", null, 0, 1, EventSynchronisation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEventSynchronisation_Prefix(), ecorePackage.getEString(), "prefix", "", 0, 1, EventSynchronisation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEventSynchronisation_SynchronisedCases(), theCoreextensionPackage.getEventCases(), null, "synchronisedCases", null, 0, 1, EventSynchronisation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEventSynchronisation_ActualParameters(), ecorePackage.getEString(), "actualParameters", null, 0, -1, EventSynchronisation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

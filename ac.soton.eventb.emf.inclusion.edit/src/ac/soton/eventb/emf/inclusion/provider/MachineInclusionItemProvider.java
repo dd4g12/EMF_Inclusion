@@ -7,6 +7,8 @@
 package ac.soton.eventb.emf.inclusion.provider;
 
 
+import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionFactory;
+import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
 import ac.soton.eventb.emf.inclusion.InclusionFactory;
 import ac.soton.eventb.emf.inclusion.InclusionPackage;
 import ac.soton.eventb.emf.inclusion.MachineInclusion;
@@ -216,13 +218,13 @@ public class MachineInclusionItemProvider
 		
 			
 		if (object instanceof EObject && 
-			ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage.Literals.EVENT_CASES.getEAnnotation("org.eventb.emf.core.extendedMetaClasses") == null  || 
-			ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage.Literals.EVENT_CASES.getEAnnotation("org.eventb.emf.core.extendedMetaClasses").getReferences().contains(((EObject)object).eClass()))
+			CoreextensionPackage.Literals.EVENT_CASES.getEAnnotation("org.eventb.emf.core.extendedMetaClasses") == null  || 
+			CoreextensionPackage.Literals.EVENT_CASES.getEAnnotation("org.eventb.emf.core.extendedMetaClasses").getReferences().contains(((EObject)object).eClass()))
 		
 			newChildDescriptors.add
 				(createChildParameter
 					(CorePackage.Literals.EVENT_BELEMENT__EXTENSIONS,
-				 	ac.soton.eventb.emf.core.extension.coreextension.CoreextensionFactory.eINSTANCE.createEventCases()));
+				 	CoreextensionFactory.eINSTANCE.createEventCases()));
 	}
 
 }
