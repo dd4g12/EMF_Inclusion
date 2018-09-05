@@ -45,7 +45,7 @@ public class EventSynchronisationRule extends AbstractRule implements IRule{
 		
 		@Override
 		public boolean enabled(final EObject sourceElement) throws Exception  {
-			if(sourceElement instanceof EventSynchronisation && !((EventSynchronisation)sourceElement).getSynchronisedEvent().eContents().isEmpty())
+			if(sourceElement instanceof EventSynchronisation && ((EventSynchronisation)sourceElement).getSynchronisedEvent() != null)
 				return true;	
 			else
 				return false;

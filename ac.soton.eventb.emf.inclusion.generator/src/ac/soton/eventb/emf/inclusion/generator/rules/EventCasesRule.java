@@ -36,7 +36,7 @@ public class EventCasesRule extends AbstractRule implements IRule{
 	protected static final EReference events = MachinePackage.Literals.MACHINE__EVENTS;
 	@Override
 	public boolean enabled(final EObject sourceElement) throws Exception  {
-		if(sourceElement instanceof EventSynchronisation && !((EventSynchronisation)sourceElement).getSynchronisedCases().eContents().isEmpty())			
+		if(sourceElement instanceof EventSynchronisation && ((EventSynchronisation)sourceElement).getSynchronisedCases() != null)			
 			return true;
 					
 		else
