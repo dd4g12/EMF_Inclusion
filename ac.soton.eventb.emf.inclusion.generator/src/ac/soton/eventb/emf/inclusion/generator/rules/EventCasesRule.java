@@ -65,24 +65,26 @@ public class EventCasesRule extends AbstractRule implements IRule{
 			String name = e.getName() + "_" + evt.getName();
 			// get info from the event before synchronisation
 			Event e2 = (Event) Make.event(name, e.isExtended(), e.getConvergence(), e.getRefinesNames(), e.getComment());
-			// how to distinguish between formal paranmeters and arguments 
-			// i assume here are the arguments but how to find the formal parameters and what happens in case of nested grouping??
-			
-			// this is the arguments
-			EList<FormalParameter> arguments = eventSynch.getSynchronisedCases().getFormalParameters();
+		
+			EList<String> arguments = eventSynch.getActualParameters();
 			
 			
 			// formal parameters
 			Machine included_mch = (Machine) synchronisedCases.eContainer();
 			ArrayList<String> formalParNames = getFormalParameterNames(included_mch, synchronisedCases , pref);
 			
-			// need to create gurads related to formal parametes
+			// need to create guards related to formal parametes
 			// add these guards to e2 
 			// what about prefixing???? is this affected by prefixing
 			
 			//similar to copy event in event synchronisation
-			ArrayList<Guard> grds = generateEventGroupGuards(formalParNames, arguments, pref);
-			e2.getGuards().addAll(grds);
+			
+			//Check if both formal parameters and actual parameters are of the same size
+			if(arguments.size() == formalParNames.size()) {
+				ArrayList<Guard> grds = generateEventGroupGuards(formalParNames, arguments, pref);
+				e2.getGuards().addAll(grds);
+			}
+				
 			Utilities.copyEvents(e2, evt, pref);
 			
 			ret.add(Make.descriptor(mch, events, e2, 2));
@@ -119,15 +121,15 @@ public class EventCasesRule extends AbstractRule implements IRule{
 	}
 	
 	// Define the guards that relate formal  parameters to arguments
-	private ArrayList<Guard> generateEventGroupGuards(ArrayList <String> formalParameters, EList<FormalParameter> arguments, String prefix){
+	private ArrayList<Guard> generateEventGroupGuards(ArrayList <String> formalParameters, EList<String> arguments, String prefix){
 		ArrayList <Guard> grdList = new ArrayList<Guard>();
 		for(int i = 0; i < formalParameters.size(); i++) {
 		  //for(String formalName : formalParameters) {
 			String predicate = "";
 			if(prefix == "")
-				predicate = formalParameters.get(i) + "=" + ((FormalParameter) arguments.get(i)).getName();
+				predicate = formalParameters.get(i) + "=" +  arguments.get(i);
 			else
-				predicate = prefix + "_" + formalParameters.get(i) + "=" + ((FormalParameter) arguments.get(i)).getName();
+				predicate = prefix + "_" + formalParameters.get(i) + "=" + arguments.get(i);
 			
 		    String name = "grd_" + formalParameters.get(i);
 			Guard newGrd = (Guard) Make.guard(name, false, predicate, "");
