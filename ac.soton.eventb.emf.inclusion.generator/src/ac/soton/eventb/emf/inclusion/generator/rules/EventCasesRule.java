@@ -71,7 +71,7 @@ public class EventCasesRule extends AbstractRule implements IRule{
 			
 			// formal parameters
 			Machine included_mch = (Machine) synchronisedCases.eContainer();
-			ArrayList<String> formalParNames = getFormalParameterNames(included_mch, synchronisedCases , pref);
+			ArrayList<String> formalParNames = getFormalParameterNames(included_mch, synchronisedCases);
 			
 			// need to create guards related to formal parametes
 			// add these guards to e2 
@@ -105,18 +105,11 @@ public class EventCasesRule extends AbstractRule implements IRule{
 	}
 	
 	// get formal parameters  of event group and rename the parameters if required
-	private ArrayList<String> getFormalParameterNames(Machine sourceMachine, EventCases evtGroup, String prefix){
+	private ArrayList<String> getFormalParameterNames(Machine sourceMachine, EventCases evtGroup){
 		ArrayList <String> parList = new ArrayList<String>();
-		for(FormalParameter par: evtGroup.getFormalParameters()){
-			String name = "";
-			if(prefix != "")
-				name = prefix + "_" + par.getName();
-			else
-				name = par.getName();
-			
-			//Parameter newPar = (Parameter) Make.parameter(name, par.getComment());
-			parList.add(name);
-		}
+		for(FormalParameter par: evtGroup.getFormalParameters())
+			parList.add(par.getName());
+		
 		return parList;
 	}
 	
@@ -126,12 +119,19 @@ public class EventCasesRule extends AbstractRule implements IRule{
 		for(int i = 0; i < formalParameters.size(); i++) {
 		  //for(String formalName : formalParameters) {
 			String predicate = "";
-			if(prefix == "")
+			String name = "";
+			if(prefix == "") {
 				predicate = formalParameters.get(i) + "=" +  arguments.get(i);
-			else
-				predicate = prefix + "_" + formalParameters.get(i) + "=" + arguments.get(i);
+			    name = "grd_" + formalParameters.get(i);
+			}
 			
-		    String name = "grd_" + formalParameters.get(i);
+				
+			else {
+				predicate = prefix + "_" + formalParameters.get(i) + "=" + arguments.get(i);
+				name = "grd_" + prefix + "_" + formalParameters.get(i);
+			}
+				
+			
 			Guard newGrd = (Guard) Make.guard(name, false, predicate, "");
 			
 			grdList.add(newGrd);	
