@@ -12,7 +12,6 @@ import org.eventb.emf.core.machine.Guard;
 import org.eventb.emf.core.machine.Machine;
 import org.eventb.emf.core.machine.MachinePackage;
 import org.eventb.emf.core.machine.Parameter;
-
 import ac.soton.emf.translator.TranslationDescriptor;
 import ac.soton.emf.translator.configuration.AbstractRule;
 import ac.soton.emf.translator.configuration.IRule;
@@ -64,8 +63,40 @@ public class EventCasesRule extends AbstractRule implements IRule{
 		for (Event evt : synchronisedCases.getEvents()) {
 			String name = e.getName() + "_" + evt.getName();
 			// get info from the event before synchronisation
+			
+			//---------------------------------------
+			//check if last or not
+			
+			if(synchronisedCases.getEvents().indexOf(evt) == synchronisedCases.getEvents().size()-1) {
+				e.setName(name);
+				EList<String> arguments = eventSynch.getActualParameters();
+				
+				
+				// formal parameters
+				Machine included_mch = (Machine) synchronisedCases.eContainer();
+				ArrayList<String> formalParNames = getFormalParameterNames(included_mch, synchronisedCases);
+				
+				// need to create guards related to formal parametes
+				// add these guards to e2 
+				//similar to copy event in event synchronisation
+				
+				//Check if both formal parameters and actual parameters are of the same size
+				if(arguments.size() == formalParNames.size()) {
+					ArrayList<Guard> grds = generateEventGroupGuards(formalParNames, arguments, pref);
+					e.getGuards().addAll(grds);
+				}
+					
+				
+				Utilities.copyEvents(e, evt, pref);
+				
+				ret.add(Make.descriptor(mch, events, e, 2));	
+			}
+			else {
+				
+			
 			Event e2 = (Event) Make.event(name, e.isExtended(), e.getConvergence(), e.getRefinesNames(), e.getComment());
-		
+			Utilities.copyEvents(e2, e, "");
+	
 			EList<String> arguments = eventSynch.getActualParameters();
 			
 			
@@ -75,8 +106,6 @@ public class EventCasesRule extends AbstractRule implements IRule{
 			
 			// need to create guards related to formal parametes
 			// add these guards to e2 
-			// what about prefixing???? is this affected by prefixing
-			
 			//similar to copy event in event synchronisation
 			
 			//Check if both formal parameters and actual parameters are of the same size
@@ -85,12 +114,45 @@ public class EventCasesRule extends AbstractRule implements IRule{
 				e2.getGuards().addAll(grds);
 			}
 				
+			
 			Utilities.copyEvents(e2, evt, pref);
 			
-			ret.add(Make.descriptor(mch, events, e2, 2));
+			ret.add(Make.descriptor(mch, events, e2, 2));	
+			}//end of else
         }
-	   
-		//--
+//	  int i =  mch.getEvents().indexOf(e);//remove(e);
+//	  
+//	  System.out.println("index: " + i + " event " + mch.getEvents().get(i).getName() + "  extensio  no: " + mch.getEvents().get(i).getExtensions().indexOf(eventSynch));
+	 
+//	 //--------------------------------
+//	 //Remove source event if it only synchronise with a group and this is the last group
+//		Boolean canDelete = false;
+//		if(e.getExtensions().size() > 1) {
+//			
+//			//if(eventSynch.getSynchronisedEvent() == null) {
+//			if(e.getExtensions().indexOf(eventSynch) == (e.getExtensions().size()-1)) {
+//				//if no other extension is synchronosed event
+//				for(int i = 0; i < e.getExtensions().size()-2; i++) {
+//					if(e.getExtensions().get(i) instanceof EventSynchronisation && ((EventSynchronisation)e.getExtensions().get(i)).getSynchronisedEvent() != null) {
+//						canDelete = false;
+//						break;
+//					}
+//						
+//					else
+//						canDelete = true;
+//				}
+//				
+//			}
+//					
+//			//}		
+//		}
+//		else 
+//			canDelete = true;//just delete
+//		if(canDelete) {
+//			mch.getEvents().remove(e);
+//		}  
+//	 //--------------------------------
+	  //No need for removing just for the last case instead of copying the event add to it but still need to check if this will affect synchronise with event if thee was one after it.
 		return ret;	
 	}
 	
